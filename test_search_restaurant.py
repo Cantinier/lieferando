@@ -3,8 +3,8 @@ from Steps.MainPage.MainPageSteps import get_search_input, \
                                             add_address_on_search_input, \
                                             get_autocomplete_dropdown_elements
 from Steps.RestaurantsCatalog.RestaurantsCatalogSteps import get_restaurants_list_names
-from Data.addresses import addresses_C2, addresses_C3
-from Data.restaurants import restaurants
+from Data.addresses import Address
+from Data.restaurants import Restaurant
 
 
 def test_availability_of_string(get_driver):
@@ -21,7 +21,9 @@ def test_check_target_address(get_driver):
     :param get_driver: pytest.fixture to start / stop the browser
     Case Automation C2. When entering data in the search string, autocomplete works
     """
-    nearest_address, target_address = addresses_C2[0].values()
+    address = Address()
+    nearest_address = address.get_entered_address()
+    target_address = address.get_target_address()
     add_address_on_search_input(get_driver, nearest_address)
     DropDownElements = get_autocomplete_dropdown_elements(get_driver)
     DropDownElementsList = []
@@ -36,8 +38,10 @@ def test_check_nearest_restaurant(get_driver):
     :param get_driver: pytest.fixture to start / stop the browser
     Case Automation C3. When choosing a address - a list of nearest restaurants is displayed
     """
-    target_address = addresses_C3[0]
-    target_restaurants = restaurants[0]
+    address = Address()
+    restaurant = Restaurant()
+    target_address = address.get_target_address()
+    target_restaurants = restaurant.get_restaurant_name()
     add_address_on_search_input(get_driver, target_address)
     DropDownElements = get_autocomplete_dropdown_elements(get_driver)
     for element in DropDownElements:
