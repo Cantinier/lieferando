@@ -23,3 +23,9 @@ def get_autocomplete_dropdown_elements(driver):
     DropDown = driver.find_element(By.XPATH, '//*[@id="iautoCompleteDropDownContent"]')
     DropDownElements = DropDown.find_elements_by_tag_name('a')
     return DropDownElements
+
+
+def get_cookie_banner_button(driver):
+    cookie_banner = driver.find_element_by_class_name('cc-banner__container ')
+    cookie_banner_button = cookie_banner.find_element_by_tag_name('button')
+    return cookie_banner_button

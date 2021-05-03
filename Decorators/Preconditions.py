@@ -1,5 +1,5 @@
-from Data.addresses import addresses_C3
-from Data.restaurants import restaurants
+from Data.addresses import Address
+from Data.restaurants import Restaurant
 from Steps.MainPage.MainPageSteps import add_address_on_search_input, \
                                             get_autocomplete_dropdown_elements
 from Steps.RestaurantsCatalog.RestaurantsCatalogSteps import get_restaurants_list_names
@@ -7,8 +7,8 @@ from Steps.RestaurantsCatalog.RestaurantsCatalogSteps import get_restaurants_lis
 
 def open_restaurants_page(test):
     def open_restaurants_page_func(get_driver):
-        target_address = addresses_C3[0]
-        target_restaurants = restaurants[0]
+        target_address = Address().get_target_address()
+        target_restaurants = Restaurant().get_restaurant_name()
         add_address_on_search_input(get_driver, target_address)
         DropDownElements = get_autocomplete_dropdown_elements(get_driver)
         for element in DropDownElements:
